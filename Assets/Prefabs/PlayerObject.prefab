@@ -71,7 +71,7 @@ Transform:
   - {fileID: 8789969262976122278}
   - {fileID: 1358789901441037666}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &47549489203437123
 MonoBehaviour:
@@ -226,7 +226,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 32
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &2066040714493131670
 MonoBehaviour:
@@ -244,7 +244,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   target: {fileID: -2203895396189176925}
-  clientAuthority: 0
+  clientAuthority: 1
   syncVelocity: 1
   clearVelocity: 0
   velocitySensitivity: 0.1
@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1358789901441037666
 Transform:
   m_ObjectHideFlags: 0
