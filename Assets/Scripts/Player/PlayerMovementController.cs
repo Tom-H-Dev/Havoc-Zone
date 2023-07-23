@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovementController : NetworkBehaviour
 {
-    public float speed = 10f;
+    public float speed;
     public GameObject playerModel;
-
+    private Rigidbody _rb;
+    private float _originalSpeed;
+    [Range(1,5)]
+    [SerializeField] private float _sprintSpeed;
 
     private void Start()
     {
         playerModel.SetActive(false);
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -21,19 +25,55 @@ public class PlayerMovementController : NetworkBehaviour
         {
             if (!playerModel.activeSelf)
             {
+
+                // TODO: make it so the player does not see their own skin but do other peoples skins\
+
                 SetPosition();
                 playerModel.SetActive(true);
                 // Lock and Hide the Cursor
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                _rb = GetComponent<Rigidbody>();
             }
 
-            if (hasAuthority)
+            if (hasAuthority || GameManager.instance.devAccess)
             {
                 Movement();
+
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    Sprinting();
+                }
+                else if (Input.GetKeyUp(KeyCode.LeftShift))
+                {
+                    ReleaseSprint();
+                }
             }
         }
     }
+
+    //private void FixedUpdate()
+    //{
+    //    print("base");
+    //    if (SceneManager.GetActiveScene().name == "Game")
+    //    {
+    //        print("Step 1");
+    //        if (hasAuthority || GameManager.instance.devAccess)
+    //        {
+    //            print("Step 2");
+    //            Movement();
+
+    //            if (Input.GetKeyDown(KeyCode.LeftShift))
+    //            {
+    //                Sprinting();
+    //            }
+    //            else if (Input.GetKeyUp(KeyCode.LeftShift))
+    //            {
+    //                ReleaseSprint();
+    //            }
+    //        }
+    //    }
+    //}
 
     public void SetPosition()
     {
@@ -45,7 +85,21 @@ public class PlayerMovementController : NetworkBehaviour
         float l_xDir = Input.GetAxis("Horizontal");
         float l_zDir = Input.GetAxis("Vertical");
 
-        Vector3 l_moveDir = new Vector3(l_xDir, 0, l_zDir);
-        transform.position += l_moveDir * speed;
+        Vector3 movement = transform.forward * l_zDir + transform.right * l_xDir;
+
+        transform.position += movement * speed * Time.deltaTime;
+        //_rb.velocity = movement *speed * Time.deltaTime;
+    }
+
+    private void Sprinting()
+    {
+        _originalSpeed = speed;
+        speed *= _sprintSpeed;
+    }
+
+    private void ReleaseSprint()
+    {
+        speed = _originalSpeed;
+
     }
 }
