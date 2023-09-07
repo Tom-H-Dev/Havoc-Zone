@@ -8,7 +8,7 @@ public class PlayerMovementController : NetworkBehaviour
 {
     public float speed;
     public GameObject playerModel;
-    private Rigidbody _rb;
+    [SerializeField]private Rigidbody _rb;
     private float _originalSpeed;
     [Range(1,5)]
     [SerializeField] private float _sprintSpeed;
@@ -33,7 +33,7 @@ public class PlayerMovementController : NetworkBehaviour
                 // Lock and Hide the Cursor
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                _rb = GetComponent<Rigidbody>();
+                _rb.useGravity = false;
             }
 
             if (hasAuthority || GameManager.instance.devAccess)
@@ -88,7 +88,7 @@ public class PlayerMovementController : NetworkBehaviour
         Vector3 movement = transform.forward * l_zDir + transform.right * l_xDir;
 
         transform.position += movement * speed * Time.deltaTime;
-        //_rb.velocity = movement *speed * Time.deltaTime;
+        //_rb.velocity += movement *speed * Time.deltaTime;
     }
 
     private void Sprinting()

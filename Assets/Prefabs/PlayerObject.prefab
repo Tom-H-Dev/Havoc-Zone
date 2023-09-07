@@ -669,6 +669,7 @@ MonoBehaviour:
   syncInterval: 0
   speed: 4
   playerModel: {fileID: 209850797108912573}
+  _rb: {fileID: 0}
   _sprintSpeed: 1.75
 --- !u!114 &8878900790610229117
 MonoBehaviour:
@@ -748,7 +749,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &4212328211347271495
 MonoBehaviour:
@@ -791,6 +792,7 @@ MonoBehaviour:
   _shootPos: {fileID: 8632619100267606520}
   _hitPointIndication: {fileID: 1682750665660292253, guid: f9c946ffeddf8e44ea410f422b3e94a5,
     type: 3}
+  _rb: {fileID: 0}
   _damage: -10
   _magazineSizes: {fileID: 11400000, guid: b387a09bb98744a4eae8b2d5c25e5bfa, type: 2}
   _magText: {fileID: 1742104244656143571}
@@ -816,6 +818,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   _currentHealth: 0
+  dummy: 0
   _healthBar: {fileID: 8865289595784362899}
 --- !u!1 &4551421461236199156
 GameObject:

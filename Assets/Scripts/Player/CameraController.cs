@@ -23,10 +23,11 @@ public class CameraController : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
-        //Turns own camera on, but others also?
         cameraHolder.SetActive(true);
         _player = transform;
         _fpsCamera = cameraHolder.GetComponentInChildren<Camera>();
+        Rigidbody rb = GetComponentInParent<Rigidbody>();
+        rb.useGravity = false;
     }
 
     private void Update()

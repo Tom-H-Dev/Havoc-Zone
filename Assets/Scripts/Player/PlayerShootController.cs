@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 using Mirror;
 using TMPro;
 using Steamworks;
+using JetBrains.Rider.Unity.Editor;
 
 public class PlayerShootController : NetworkBehaviour
 {
     [SerializeField] private GameObject _shootPos;
     [SerializeField] private GameObject _hitPointIndication;
+    public Rigidbody _rb;
 
     [SerializeField] private float _damage;
 
@@ -48,13 +50,15 @@ public class PlayerShootController : NetworkBehaviour
                 _magText.text = _currentAmmo.ToString() + " | " + _magazineSizes.mag30.ToString();
                 _setStartAmmo = true;
                 _fireTypeText.text = _firingTypes.ToString();
+                 _rb = GetComponent<Rigidbody>();
+                _rb.useGravity = true;
+                Debug.Log(_rb);
             }
 
             if (Input.GetMouseButtonDown(0) && _canShoot && !_reloadCannotShoot)
             {
                 if (hasAuthority && _firingTypes != FiringTypes.Safe && _canShoot)
                 {
-                    StartCoroutine(ShotTimer(_shootInterval));
                     if (_currentAmmo <= 0)
                     {
                         //play sound que that mag is empty
@@ -63,6 +67,7 @@ public class PlayerShootController : NetworkBehaviour
                     {
                         ShootGun();
                     }
+                    StartCoroutine(ShotTimer(_shootInterval));
                 }
                 else if (_firingTypes == FiringTypes.Safe)
                 {
@@ -103,13 +108,11 @@ public class PlayerShootController : NetworkBehaviour
 
             if (Input.GetKeyDown(KeyCode.R) && _reloading == false)
             {
-                Debug.Log("Reload");
                 StartCoroutine(Reload());
             }
 
             if (Input.GetKeyDown(KeyCode.V) && _canShoot && !_reloadCannotShoot)
             {
-                Debug.Log("Change Fire Type");
                 ChangeFireType();
             }
         }
@@ -164,12 +167,7 @@ public class PlayerShootController : NetworkBehaviour
         switch (_firingTypes)
         {
             case FiringTypes.Safe:
-                if (weaponTypes == WeaponTypes.Pistol ||
-                    weaponTypes == WeaponTypes.SubMachineGun ||
-                    weaponTypes == WeaponTypes.Shotgun ||
-                    weaponTypes == WeaponTypes.Special ||
-                    weaponTypes == WeaponTypes.AssultRifle ||
-                    weaponTypes == WeaponTypes.RocketLauncher)
+                if (weaponTypes != WeaponTypes.Sniper)
                     _firingTypes = FiringTypes.Semi;
                 else if (weaponTypes == WeaponTypes.Sniper)
                     _firingTypes = FiringTypes.Sniper;

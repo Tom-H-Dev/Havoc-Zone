@@ -14,7 +14,7 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
     [Header("Health bar")]
     [SerializeField] private Slider _healthBar;
 
-    private float _damage = 10;
+    private float _damage = -10;
     private void Start()
     {
         SetMaxHealth();
@@ -39,7 +39,7 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
         }
         else
         {
-            _currentHealth -= l_healthChange;
+            _currentHealth += l_healthChange;
             if (!dummy)
                 ChangeHealthbarvalue();
         }
@@ -55,6 +55,7 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
     private void PlayerDead()
     {
         Debug.Log("Player " + gameObject.name + " died");
+        Destroy(gameObject);
     }
 
     private void ChangeHealthbarvalue()
