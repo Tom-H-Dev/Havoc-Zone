@@ -61,7 +61,7 @@ public class PlayerShootController : NetworkBehaviour
                 {
                     if (_currentAmmo <= 0)
                     {
-                        //play sound que that mag is empty
+                        //play sound cue that mag is empty
                     }
                     else if (_currentAmmo > 0 && _currentAmmo <= _magazineSizes.mag30) //need to change for dynamic mag sizes
                     {
@@ -82,9 +82,9 @@ public class PlayerShootController : NetworkBehaviour
                     if (_currentAmmo <= 0)
                     {
                         _canShoot = false;
-                        //play sound que that mag is empty
+                        //play sound cue that mag is empty
                     }
-                    else if (_currentAmmo > 0 && _currentAmmo <= _magazineSizes.mag30) //need to change for dynamic mag sizes
+                    else if (_currentAmmo > 0 && _currentAmmo <= _magazineSizes.mag30)
                     {
                         ShootGun();
                     }
@@ -154,12 +154,6 @@ public class PlayerShootController : NetworkBehaviour
             }
         }
         Debug.DrawRay(_shootPos.transform.position, _shootPos.transform.forward * 10, Color.red, 0.2f);
-    }
-
-    private IEnumerator DestroyBulletHitPoint(GameObject l_hitObject, float l_waitTime)
-    {
-        yield return new WaitForSeconds(l_waitTime);
-        Destroy(l_hitObject);
     }
 
     private void ChangeFireType()

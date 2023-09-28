@@ -52,29 +52,6 @@ public class PlayerMovementController : NetworkBehaviour
         }
     }
 
-    //private void FixedUpdate()
-    //{
-    //    print("base");
-    //    if (SceneManager.GetActiveScene().name == "Game")
-    //    {
-    //        print("Step 1");
-    //        if (hasAuthority || GameManager.instance.devAccess)
-    //        {
-    //            print("Step 2");
-    //            Movement();
-
-    //            if (Input.GetKeyDown(KeyCode.LeftShift))
-    //            {
-    //                Sprinting();
-    //            }
-    //            else if (Input.GetKeyUp(KeyCode.LeftShift))
-    //            {
-    //                ReleaseSprint();
-    //            }
-    //        }
-    //    }
-    //}
-
     public void SetPosition()
     {
         transform.position = new Vector3(Random.Range(-5, 5), 1f, Random.Range(-5, 5));
