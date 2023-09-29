@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using Mirror;
 using TMPro;
 using Steamworks;
-using JetBrains.Rider.Unity.Editor;
 
 public class PlayerShootController : NetworkBehaviour
 {

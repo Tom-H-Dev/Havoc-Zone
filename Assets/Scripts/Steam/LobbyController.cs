@@ -15,7 +15,8 @@ public class LobbyController : MonoBehaviour
     public TextMeshProUGUI lobbyNameText;
 
     // Player Data
-    public GameObject playerListViewContent;
+    public GameObject playerListViewContentBlue;
+    public GameObject playerListViewContentRed;
     public GameObject playerListItemPrefab;
     public GameObject localPlayerObject;
 
@@ -31,6 +32,10 @@ public class LobbyController : MonoBehaviour
 
     // Manager
     private CustomNetworkManager _manager;
+
+    //Teams
+    private List<GameObject> _playersBlue = new List<GameObject>();
+    private List<GameObject> _playersRed = new List<GameObject>();
 
     private CustomNetworkManager Manager
     {
@@ -137,8 +142,9 @@ public class LobbyController : MonoBehaviour
             l_newPlayerItemSrcipt.ready = l_player.ready;
             l_newPlayerItemSrcipt.SetPlayerValues();
 
-            l_newPlayerItemSrcipt.transform.SetParent(playerListViewContent.transform);
+            l_newPlayerItemSrcipt.transform.SetParent(playerListViewContentBlue.transform);
             l_newPlayerItemSrcipt.transform.localScale = Vector3.one;
+            _playersBlue.Add(l_newPlayerItemSrcipt.transform.gameObject);
 
             _playerListItems.Add(l_newPlayerItemSrcipt);
         }
@@ -160,8 +166,19 @@ public class LobbyController : MonoBehaviour
                 l_newPlayerItemSript.ready = l_player.ready;
                 l_newPlayerItemSript.SetPlayerValues();
 
-                l_newPlayerItemSript.transform.SetParent(playerListViewContent.transform);
-                l_newPlayerItemSript.transform.localScale = Vector3.one;
+                //Here
+                if (_playerListItems.Count + 1 % 2 == 0)
+                {
+                    l_newPlayerItemSript.transform.SetParent(playerListViewContentBlue.transform);
+                    l_newPlayerItemSript.transform.localScale = Vector3.one;
+                    _playersBlue.Add(l_newPlayerItemSript.transform.gameObject);
+                }
+                else
+                {
+                    l_newPlayerItemSript.transform.SetParent(playerListViewContentRed.transform);
+                    l_newPlayerItemSript.transform.localScale = Vector3.one;
+                    _playersRed.Add(l_newPlayerItemSript.transform.gameObject);
+                }
 
                 _playerListItems.Add(l_newPlayerItemSript);
             }
