@@ -139,8 +139,6 @@ public class LobbyController : MonoBehaviour
 
             l_newPlayerItemSrcipt.transform.SetParent(playerListViewContentBlue.transform);
             l_newPlayerItemSrcipt.transform.localScale = Vector3.one;
-
-            _playerListItems.Add(l_newPlayerItemSrcipt);
         }
         playerItemCreated = true;
     }
