@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public List<GameObject> players;
 
     public bool devAccess;
 
@@ -15,5 +17,6 @@ public class GameManager : MonoBehaviour
         else instance = this;
 
         DontDestroyOnLoad(gameObject);
+        players = new List<GameObject>();
     }
 }
