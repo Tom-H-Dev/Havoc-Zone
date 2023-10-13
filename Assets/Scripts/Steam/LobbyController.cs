@@ -163,7 +163,6 @@ public class LobbyController : MonoBehaviour
 
                 _playerListItems.Add(l_newPlayerItemSript);
             }
-            GameManager.instance.players.Add(l_player.gameObject);
         }
     }
 

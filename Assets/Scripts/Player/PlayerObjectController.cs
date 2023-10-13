@@ -29,6 +29,7 @@ public class PlayerObjectController : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+        GameManager.instance.players.Add(gameObject);
     }
 
     private void ReadyPlayerUpdate(bool l_oldValue, bool l_newValue)
