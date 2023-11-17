@@ -1714,7 +1714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyNameText: {fileID: 1720693415}
   playerListViewContentBlue: {fileID: 1496933541}
-  playerListViewContentRed: {fileID: 0}
   playerListItemPrefab: {fileID: 3214167097721803073, guid: 9afbcfea97f1ab34f9014dd967a1a775,
     type: 3}
   localPlayerObject: {fileID: 0}

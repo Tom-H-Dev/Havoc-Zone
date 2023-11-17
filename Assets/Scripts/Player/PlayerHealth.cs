@@ -32,15 +32,15 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
     }
     public void ChangeHealth(float l_healthChange)
     {
-        print("Changing Health");
         if (_currentHealth <= 0)
         {
-            PlayerDead();
+            StartCoroutine(PlayerDead());
             if (!dummy)
                 ChangeHealthbarvalue();
         }
         else
         {
+            print("Changing Health");
             _currentHealth += l_healthChange;
             if (!dummy)
                 ChangeHealthbarvalue();
@@ -60,6 +60,7 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
 
         yield return new WaitForSeconds(1);
         transform.position = localSpawnPosition.position;
+        _currentHealth = 100;
     }
 
     private void ChangeHealthbarvalue()

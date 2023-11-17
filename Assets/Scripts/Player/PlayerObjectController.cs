@@ -37,6 +37,8 @@ public class PlayerObjectController : NetworkBehaviour
         if (isServer)
         {
             this.ready = l_newValue;
+            
+            NotDestoryBedug.instance.debugText.text = "host";
         }
         if (isClient)
         {

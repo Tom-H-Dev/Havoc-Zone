@@ -128,6 +128,7 @@ public class LobbyController : MonoBehaviour
     {
         foreach (PlayerObjectController l_player in Manager.gamePlayers)
         {
+            //NotDestoryBedug.instance.debugText.text = "Host";
             GameObject l_newPlayerItem = Instantiate(playerListItemPrefab) as GameObject;
             PlayerListItem l_newPlayerItemSrcipt = l_newPlayerItem.GetComponent<PlayerListItem>();
 

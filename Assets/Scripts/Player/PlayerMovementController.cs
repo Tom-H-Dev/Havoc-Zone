@@ -28,7 +28,6 @@ public class PlayerMovementController : NetworkBehaviour
 
                 // TODO: make it so the player does not see their own skin but do other peoples skins\
 
-                //SetPosition();
                 playerModel.SetActive(true);
                 // Lock and Hide the Cursor
                 Cursor.visible = false;
