@@ -13,6 +13,8 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
 
     [Header("Health bar")]
     [SerializeField] private Slider _healthBar;
+    public Transform localSpawnPosition;
+
 
     private float _damage = -10;
     private void Start()
@@ -52,10 +54,12 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
             ChangeHealthbarvalue();
     }
 
-    private void PlayerDead()
+    private IEnumerator PlayerDead()
     {
         Debug.Log("Player " + gameObject.name + " died");
-        Destroy(gameObject);
+
+        yield return new WaitForSeconds(1);
+        transform.position = localSpawnPosition.position;
     }
 
     private void ChangeHealthbarvalue()
