@@ -2,7 +2,6 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TeamManager : NetworkBehaviour
@@ -24,6 +23,7 @@ public class TeamManager : NetworkBehaviour
 
         if (isServer)
         {
+            Debug.Log("here");
             NotDestoryBedug.instance.debugText.text = "Host";
             System.Random random = new System.Random();
             int n = GameManager.instance.players.Count;
