@@ -820,6 +820,7 @@ MonoBehaviour:
   _currentHealth: 0
   dummy: 0
   _healthBar: {fileID: 8865289595784362899}
+  localSpawnPosition: {fileID: 0}
 --- !u!1 &4551421461236199156
 GameObject:
   m_ObjectHideFlags: 0
