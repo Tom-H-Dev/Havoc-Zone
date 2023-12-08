@@ -1,11 +1,14 @@
 using Mirror;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TeamManager : NetworkBehaviour
 {
+    [SerializeField] private bool doneOnce = false;
+
+    [Header("Players")]
+    [SerializeField] private List<GameObject> _allPlayersInScene;
+
     [Header("Player Teams")]
     [SerializeField] private List<GameObject> _playersTeamBlue;
     [SerializeField] private List<GameObject> _playersTeamRed;
@@ -19,11 +22,11 @@ public class TeamManager : NetworkBehaviour
     {
         _playersTeamBlue = new List<GameObject>();
         _playersTeamRed = new List<GameObject>();
+        _allPlayersInScene = new List<GameObject>();
 
 
         if (isServer)
         {
-            Debug.Log("here");
             NotDestoryBedug.instance.debugText.text = "Host";
             System.Random random = new System.Random();
             int n = GameManager.instance.players.Count;
@@ -48,9 +51,33 @@ public class TeamManager : NetworkBehaviour
                     _playersTeamRed.Add(GameManager.instance.players[i]);
                 }
             }
-
-            SpawnPlayersInPositions();
         }
+    }
+    private void Update()
+    {
+
+        if (isServer)
+        {
+            if (!doneOnce)
+            {
+                PlayerMovementController[] allObjects = FindObjectsOfType<PlayerMovementController>();
+                foreach (PlayerMovementController obj in allObjects)
+                {
+                    _allPlayersInScene.Add(obj.gameObject);
+                }
+
+                if (_allPlayersInScene.Count >= GameManager.instance.players.Count)
+                {
+                    doneOnce = true;
+                    SpawnPlayersInPositions();
+                }
+                else
+                {
+                    _allPlayersInScene.Clear();
+                }
+            }
+        }
+
     }
 
     public void SpawnPlayersInPositions()
