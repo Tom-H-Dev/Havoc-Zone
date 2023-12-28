@@ -58,9 +58,9 @@ public class PlayerHealth : NetworkBehaviour, IHealthable
     {
         Debug.Log("Player " + gameObject.name + " died");
 
-        yield return new WaitForSeconds(1);
         transform.position = localSpawnPosition.position;
         _currentHealth = 100;
+        yield return null;
     }
 
     private void ChangeHealthbarvalue()
